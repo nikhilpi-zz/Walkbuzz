@@ -72,9 +72,7 @@ public class BluetoothChat extends Activity {
 
     // Layout Views
     private TextView mTitle;
-    //private ListView mConversationView;
-    //private EditText mOutEditText;
-    //private Button mSendButton;
+    private TextView mOut;
     
     private View touchPanel;
 
@@ -153,27 +151,7 @@ public class BluetoothChat extends Activity {
     private void setupChat() {
         Log.d(TAG, "setupChat()");
 
-        // Initialize the array adapter for the conversation thread
-        //mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);
-        //mConversationView = (ListView) findViewById(R.id.in);
-        //mConversationView.setAdapter(mConversationArrayAdapter);
-
-        // Initialize the compose field with a listener for the return key
-        //mOutEditText = (EditText) findViewById(R.id.edit_text_out);
-        //mOutEditText.setOnEditorActionListener(mWriteListener);
-
-        // Initialize the send button with a listener that for click events
-        //mSendButton = (Button) findViewById(R.id.button_send);
-        /*mSendButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                // Send a message using content of the edit text widget
-                TextView view = (TextView) findViewById(R.id.edit_text_out);
-                String message = view.getText().toString();
-                sendMessage(message);
-            }
-        });
-		*/
-		
+		mOut = (TextView)findViewById(R.id.receiving);
         touchPanel = (View)findViewById(R.id.touchPanel);
         
         touchPanel.setOnTouchListener(new View.OnTouchListener() {
@@ -276,25 +254,10 @@ public class BluetoothChat extends Activity {
 
             // Reset out string buffer to zero and clear the edit text field
             mOutStringBuffer.setLength(0);
-            //mOutEditText.setText(mOutStringBuffer);
+            //write sent message
+            mOut.setText("Sent: " + message);
         }
     }
-
-    /*
-    // The action listener for the EditText widget, to listen for the return key
-    private TextView.OnEditorActionListener mWriteListener =
-        new TextView.OnEditorActionListener() {
-        public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-            // If the action is a key-up event on the return key, send the message
-            if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_UP) {
-                String message = view.getText().toString();
-                sendMessage(message);
-            }
-            if(D) Log.i(TAG, "END onEditorAction");
-            return true;
-        }
-    };
-    */
 
     // The Handler that gets information back from the BluetoothChatService
     private final Handler mHandler = new Handler() {
@@ -326,11 +289,10 @@ public class BluetoothChat extends Activity {
                 break;
             case MESSAGE_READ:
                 byte[] readBuf = (byte[]) msg.obj;
-                // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                //mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
                 Log.d(TAG, "angle: " + readMessage);
                 Serial.WriteSerial(readMessage);
+                mOut.setText("Recieved: " + readMessage);
                 break;
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name

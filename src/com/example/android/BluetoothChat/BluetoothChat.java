@@ -157,7 +157,7 @@ public class BluetoothChat extends Activity {
         touchPanel.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_MOVE)
+                if(event.getAction() == MotionEvent.ACTION_MOVE || event.getAction() == MotionEvent.ACTION_DOWN)
                 {
                 	double centerX = (touchPanel.getWidth()/2);
                     double centerY = (touchPanel.getHeight()/2);
@@ -186,8 +186,10 @@ public class BluetoothChat extends Activity {
                     }
                     
                     int iAngle = (int) Math.floor(angle);
+                    if (iAngle%5==0){
                     sendMessage(Integer.toString(iAngle));
                     Log.d(TAG, "angle: " + iAngle);
+                    }
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                 	sendMessage("-1");
                 	Log.d(TAG, "OFF");
@@ -290,9 +292,17 @@ public class BluetoothChat extends Activity {
             case MESSAGE_READ:
                 byte[] readBuf = (byte[]) msg.obj;
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                Log.d(TAG, "angle: " + readMessage);
-                Serial.WriteSerial(readMessage);
+                int ang = -1;
+                try {
+                	ang = Integer.parseInt(readMessage);
+                } catch(NumberFormatException e) {
+                	
+                }
+                if(ang <= 360) {
+                Log.d(TAG, "angle: " + ang);
+                Serial.WriteSerial(Integer.toString(ang));
                 mOut.setText("Recieved: " + readMessage);
+                }
                 break;
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name

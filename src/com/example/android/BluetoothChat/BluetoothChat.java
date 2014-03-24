@@ -20,6 +20,7 @@ package com.example.android.BluetoothChat;
 
 import com.example.android.BluetoothChat.Serial;
 
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -33,6 +34,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -70,14 +72,13 @@ public class BluetoothChat extends Activity {
 
     // Layout Views
     private TextView mTitle;
-    private ListView mConversationView;
-    private EditText mOutEditText;
-    private Button mSendButton;
+    private TextView mOut;
+    
+    private View touchPanel;
 
     // Name of the connected device
     private String mConnectedDeviceName = null;
     // Array adapter for the conversation thread
-    private ArrayAdapter<String> mConversationArrayAdapter;
     // String buffer for outgoing messages
     private StringBuffer mOutStringBuffer;
     // Local Bluetooth adapter
@@ -150,26 +151,54 @@ public class BluetoothChat extends Activity {
     private void setupChat() {
         Log.d(TAG, "setupChat()");
 
-        // Initialize the array adapter for the conversation thread
-        mConversationArrayAdapter = new ArrayAdapter<String>(this, R.layout.message);
-        mConversationView = (ListView) findViewById(R.id.in);
-        mConversationView.setAdapter(mConversationArrayAdapter);
-
-        // Initialize the compose field with a listener for the return key
-        mOutEditText = (EditText) findViewById(R.id.edit_text_out);
-        mOutEditText.setOnEditorActionListener(mWriteListener);
-
-        // Initialize the send button with a listener that for click events
-        mSendButton = (Button) findViewById(R.id.button_send);
-        mSendButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                // Send a message using content of the edit text widget
-                TextView view = (TextView) findViewById(R.id.edit_text_out);
-                String message = view.getText().toString();
-                sendMessage(message);
+		mOut = (TextView)findViewById(R.id.receiving);
+        touchPanel = (View)findViewById(R.id.touchPanel);
+        
+        touchPanel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_MOVE || event.getAction() == MotionEvent.ACTION_DOWN)
+                {
+                	double centerX = (touchPanel.getWidth()/2);
+                    double centerY = (touchPanel.getHeight()/2);
+                    
+                    double x = event.getX();
+                    double y = event.getY();
+                    
+                    double dX = x - centerX;
+                    double dY = -1*(y - centerY);
+                    //Log.d(TAG, "X: " + dX + " Y: " + dY);
+                    
+                    double angle = Math.toDegrees(Math.atan(dY/dX));
+                    
+                    
+                    if(dX >= 0 && dY >= 0) {
+                    	angle = angle;
+                    }
+                    else if(dX <= 0 && dY >= 0) {
+                    	angle = angle + 180;
+                    }
+                    else if(dX <= 0 && dY <= 0) {
+                    	angle = angle + 180;
+                    }
+                    else if(dX >= 0 && dY <= 0) {
+                    	angle = angle + 360;
+                    }
+                    
+                    int iAngle = (int) Math.floor(angle);
+                    if (iAngle%5==0){
+                    sendMessage(Integer.toString(iAngle));
+                    Log.d(TAG, "angle: " + iAngle);
+                    }
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                	sendMessage("-1");
+                	Log.d(TAG, "OFF");
+                }
+                
+                return true;
             }
         });
-
+        
         // Initialize the BluetoothChatService to perform bluetooth connections
         mChatService = new BluetoothChatService(this, mHandler);
 
@@ -227,23 +256,10 @@ public class BluetoothChat extends Activity {
 
             // Reset out string buffer to zero and clear the edit text field
             mOutStringBuffer.setLength(0);
-            mOutEditText.setText(mOutStringBuffer);
+            //write sent message
+            mOut.setText("Sent: " + message);
         }
     }
-
-    // The action listener for the EditText widget, to listen for the return key
-    private TextView.OnEditorActionListener mWriteListener =
-        new TextView.OnEditorActionListener() {
-        public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-            // If the action is a key-up event on the return key, send the message
-            if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_UP) {
-                String message = view.getText().toString();
-                sendMessage(message);
-            }
-            if(D) Log.i(TAG, "END onEditorAction");
-            return true;
-        }
-    };
 
     // The Handler that gets information back from the BluetoothChatService
     private final Handler mHandler = new Handler() {
@@ -256,7 +272,7 @@ public class BluetoothChat extends Activity {
                 case BluetoothChatService.STATE_CONNECTED:
                     mTitle.setText(R.string.title_connected_to);
                     mTitle.append(mConnectedDeviceName);
-                    mConversationArrayAdapter.clear();
+                    //mConversationArrayAdapter.clear();
                     break;
                 case BluetoothChatService.STATE_CONNECTING:
                     mTitle.setText(R.string.title_connecting);
@@ -271,14 +287,22 @@ public class BluetoothChat extends Activity {
                 byte[] writeBuf = (byte[]) msg.obj;
                 // construct a string from the buffer
                 String writeMessage = new String(writeBuf);
-                mConversationArrayAdapter.add("Me:  " + writeMessage);
+                //mConversationArrayAdapter.add("Me:  " + writeMessage);
                 break;
             case MESSAGE_READ:
                 byte[] readBuf = (byte[]) msg.obj;
-                // construct a string from the valid bytes in the buffer
                 String readMessage = new String(readBuf, 0, msg.arg1);
-                mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
-                Serial.WriteSerial(readMessage);
+                int ang = -1;
+                try {
+                	ang = Integer.parseInt(readMessage);
+                } catch(NumberFormatException e) {
+                	
+                }
+                if(ang <= 360) {
+                Log.d(TAG, "angle: " + ang);
+                Serial.WriteSerial(Integer.toString(ang));
+                mOut.setText("Recieved: " + readMessage);
+                }
                 break;
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name

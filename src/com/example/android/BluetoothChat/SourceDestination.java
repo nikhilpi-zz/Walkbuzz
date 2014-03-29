@@ -61,6 +61,7 @@ public class SourceDestination extends Activity {
     private double startLat;
     private double startLon;
     private EditText destination;
+    final static String TAG = "SrcDest";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +101,8 @@ public class SourceDestination extends Activity {
                 Intent i = new Intent(SourceDestination.this, GetDirections.class);
                 String dest = destination.getText().toString();
                 String curr = locationdata.getText().toString();
+                //Log.d(TAG,curr);
+                i.putExtra("current",curr); //send info to GetDirections
                 i.putExtra("destination",dest);
                 startActivity(i);
             }

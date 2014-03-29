@@ -3,8 +3,12 @@
   <component name="AndroidConfiguredLogFilters">
     <filters>
       <filter>
+        <option name="logLevel" value="error" />
+        <option name="logMessagePattern" value="" />
+        <option name="logTagPattern" value="" />
         <option name="name" value="app: com.example.android.BluetoothChat" />
         <option name="packageNamePattern" value="com.example.android.BluetoothChat" />
+        <option name="pid" value="" />
       </filter>
     </filters>
   </component>
@@ -23,8 +27,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ffa1616-1936-4f4d-8204-18268bd8600b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/example/android/BluetoothChat/GetDirections.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/layout/directions.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/android/BluetoothChat/SourceDestination.java" afterPath="$PROJECT_DIR$/src/com/example/android/BluetoothChat/SourceDestination.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/source_dest.xml" afterPath="$PROJECT_DIR$/res/layout/source_dest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gradle.iws" />
@@ -102,25 +110,39 @@
       <file leaf-file-name="SourceDestination.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/SourceDestination.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.478803" vertical-offset="0" max-vertical-offset="2160">
-              <caret line="96" column="10" selection-start="2987" selection-end="2987" />
+            <state vertical-scroll-proportion="0.7008547" vertical-offset="1299" max-vertical-offset="2910">
+              <caret line="103" column="0" selection-start="3571" selection-end="3571" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2418#2665#0" expanded="true" />
+                <element signature="e#2654#2655#0" expanded="true" />
+                <element signature="e#3214#3628#0" expanded="true" />
+                <element signature="e#3617#3618#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <file leaf-file-name="directions.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/directions.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="855">
-              <caret line="31" column="66" selection-start="1474" selection-end="1513" />
+            <state vertical-scroll-proportion="-5.5555553" vertical-offset="135" max-vertical-offset="495">
+              <caret line="19" column="0" selection-start="705" selection-end="705" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetDirections.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/GetDirections.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="705">
+              <caret line="30" column="0" selection-start="749" selection-end="749" />
               <folding>
-                <element signature="e#1148#1166#0" expanded="true" />
-                <element signature="e#1597#1615#0" expanded="true" />
-                <element signature="e#1773#1796#0" expanded="true" />
-                <element signature="e#2016#2034#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -244,15 +266,19 @@
         <option value="$PROJECT_DIR$/src/com/example/android/BluetoothChat/BluetoothChat.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/source_dest.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/android/BluetoothChat/HTTPService.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/android/BluetoothChat/LocationListener.java" />
+        <option value="$PROJECT_DIR$/res/layout/directions.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/android/BluetoothChat/GetDirections.java" />
         <option value="$PROJECT_DIR$/src/com/example/android/BluetoothChat/SourceDestination.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="23" />
-    <option name="width" value="1279" />
+    <option name="x" value="2" />
+    <option name="y" value="22" />
+    <option name="width" value="1263" />
     <option name="height" value="774" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -422,10 +448,10 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/google-play-services_lib/libs/google-play-services.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/http_client_libs/xpp3-1.1.4c.jar!/" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
@@ -630,31 +656,31 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="23" width="1279" height="774" extended-state="6" />
-    <editor active="true" />
+    <frame x="2" y="22" width="1263" height="774" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32955465" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32895815" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.4995958" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32826748" sideWeight="0.5004042" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40425533" sideWeight="0.5004095" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.4995958" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.4995958" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32826748" sideWeight="0.4995958" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.49959514" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40425533" sideWeight="0.4995905" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.4995958" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2497979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.4995958" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25307125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.4995905" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -694,6 +720,10 @@
           <caret line="66" column="0" selection-start="1787" selection-end="1787" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2418#2665#0" expanded="true" />
+            <element signature="e#2654#2655#0" expanded="true" />
+            <element signature="e#3214#3628#0" expanded="true" />
+            <element signature="e#3617#3618#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -703,10 +733,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="750">
           <caret line="22" column="74" selection-start="1111" selection-end="1111" />
           <folding>
-            <element signature="e#1148#1166#0" expanded="true" />
-            <element signature="e#1597#1615#0" expanded="true" />
-            <element signature="e#1773#1796#0" expanded="true" />
-            <element signature="e#2016#2034#0" expanded="true" />
+            <element signature="e#1215#1233#0" expanded="true" />
+            <element signature="e#1664#1682#0" expanded="true" />
+            <element signature="e#1828#1846#0" expanded="true" />
+            <element signature="e#1997#2020#0" expanded="true" />
+            <element signature="e#2240#2258#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -792,10 +823,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///private/var/folders/wy/x_y1rsj501s_t08c9msrlj3h0000gp/T/dumpsys-5429731451863933788.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.34414" vertical-offset="10564" max-vertical-offset="10965">
+          <caret line="0" column="0" selection-start="0" selection-end="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/source_dest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="690">
-          <caret line="12" column="37" selection-start="475" selection-end="475" />
+        <state vertical-scroll-proportion="0.9259259" vertical-offset="0" max-vertical-offset="900">
+          <caret line="20" column="0" selection-start="705" selection-end="705" />
           <folding />
         </state>
       </provider>
@@ -803,25 +842,91 @@
         <state />
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/os/Handler.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.74358976" vertical-offset="894" max-vertical-offset="1245">
+          <caret line="78" column="0" selection-start="3379" selection-end="3379" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/org/json/JSONArray.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.74358976" vertical-offset="1164" max-vertical-offset="1515">
+          <caret line="96" column="0" selection-start="4042" selection-end="4042" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/os/Looper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2362638" vertical-offset="15" max-vertical-offset="555">
+          <caret line="32" column="0" selection-start="1028" selection-end="1028" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/os/AsyncTask.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="138" max-vertical-offset="840">
+          <caret line="18" column="19" selection-start="624" selection-end="624" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="855">
-          <caret line="31" column="66" selection-start="1474" selection-end="1513" />
+        <state vertical-scroll-proportion="0.41208792" vertical-offset="225" max-vertical-offset="900">
+          <caret line="25" column="49" selection-start="1233" selection-end="1233" />
           <folding>
-            <element signature="e#1148#1166#0" expanded="true" />
-            <element signature="e#1597#1615#0" expanded="true" />
-            <element signature="e#1773#1796#0" expanded="true" />
-            <element signature="e#2016#2034#0" expanded="true" />
+            <element signature="e#1215#1233#0" expanded="true" />
+            <element signature="e#1664#1682#0" expanded="true" />
+            <element signature="e#1828#1846#0" expanded="true" />
+            <element signature="e#1997#2020#0" expanded="true" />
+            <element signature="e#2240#2258#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/directions.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.5555553" vertical-offset="135" max-vertical-offset="495">
+          <caret line="19" column="0" selection-start="705" selection-end="705" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/java/lang/reflect/Method.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="534" max-vertical-offset="885">
+          <caret line="54" column="0" selection-start="2319" selection-end="2319" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/GetDirections.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="705">
+          <caret line="30" column="0" selection-start="749" selection-end="749" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/SourceDestination.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.478803" vertical-offset="0" max-vertical-offset="2160">
-          <caret line="96" column="10" selection-start="2987" selection-end="2987" />
+        <state vertical-scroll-proportion="0.7008547" vertical-offset="1299" max-vertical-offset="2910">
+          <caret line="103" column="0" selection-start="3571" selection-end="3571" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2418#2665#0" expanded="true" />
+            <element signature="e#2654#2655#0" expanded="true" />
+            <element signature="e#3214#3628#0" expanded="true" />
+            <element signature="e#3617#3618#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -879,7 +984,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>google-play-services_lib</last-edited>
+          <last-edited>bluetoothChat</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -903,7 +1008,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>dexedLibs</last-edited>
+          <last-edited>libs</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

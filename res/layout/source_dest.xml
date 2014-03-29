@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="No Location Data"
+        android:text="Current Location"
         android:id="@+id/location" />
 
     <TextView
@@ -20,11 +20,12 @@
         android:id="@+id/buff" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:id="@+id/dest"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPostalAddress"
-        android:ems="10"
-        android:id="@+id/destaddr" />
+        android:layout_gravity="fill_horizontal"
+        android:text="2303 Sheridan Rd, Evanston,IL"
+        android:inputType="textPostalAddress"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,6 +33,19 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
         android:id="@+id/buff2" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Directions"
+        android:id="@+id/getdirections" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/buff3" />
 
     <Button
         android:layout_width="match_parent"

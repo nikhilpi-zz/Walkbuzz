@@ -70,6 +70,8 @@ public class SourceDestination extends Activity {
         locationdata = (TextView) findViewById(R.id.location);
         destination = (EditText) findViewById(R.id.dest);
 
+        locationdata.setText("711 Church St, Evanston, IL 60201");
+
         //Start Bluetooth Chat
 
         Button btn = (Button) findViewById(R.id.bluebutton);
@@ -88,7 +90,7 @@ public class SourceDestination extends Activity {
 
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         LocationListener listen = new MyLocationListener();
-        currLoc = new Location(LocationManager.GPS_PROVIDER);
+
         manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listen);
 
         //End Current Location Listener
@@ -101,7 +103,6 @@ public class SourceDestination extends Activity {
                 Intent i = new Intent(SourceDestination.this, GetDirections.class);
                 String dest = destination.getText().toString();
                 String curr = locationdata.getText().toString();
-                //Log.d(TAG,curr);
                 i.putExtra("current",curr); //send info to GetDirections
                 i.putExtra("destination",dest);
                 startActivity(i);
@@ -122,32 +123,25 @@ public class SourceDestination extends Activity {
         public void onLocationChanged(Location loc)
 
         {
-            //Need in this format for Google Maps API
-            String strLatitude = loc.convert(loc.getLatitude(), loc.FORMAT_SECONDS);
-            String strLongitude = loc.convert(loc.getLongitude(), loc.FORMAT_SECONDS);
-
-            startLat = loc.getLatitude();
-            startLon = loc.getLongitude();
-
-
-            currLoc = loc;
-
 
             //Convert Lat/Lon to address
-            Geocoder coder = new Geocoder(getApplicationContext());
-            ArrayList<Address> addresses = null; //store addresses
+
+            //Server seems to be down - Update later
+            Geocoder coder = new Geocoder(getApplicationContext(),Locale.getDefault());
+
             try {
-                addresses = (ArrayList<Address>) coder.getFromLocation(currLoc.getLatitude(),currLoc.getLongitude(),1);
+                List<Address> addresses = coder.getFromLocation(loc.getLatitude(),loc.getLongitude(),1);
+
+                if (addresses != null && addresses.size() > 0) {
+
+                    String txt = "Current Location: \n" + addresses.get(0).getAddressLine(0) + "\n" + addresses.get(0).getAddressLine(1) + ", " + addresses.get(0).getAddressLine(2);
+                    locationdata.setText(txt);
+
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if (addresses != null && addresses.size() > 0) {
-                //Toast.makeText(getApplicationContext(), "country: " + addresses.get(0).getCountryName(), Toast.LENGTH_LONG).show();
 
-                String txt = "Current Location: \n" + addresses.get(0).getAddressLine(0) + "\n" + addresses.get(0).getAddressLine(1) + ", " + addresses.get(0).getAddressLine(2);
-                locationdata.setText(txt);
-
-            }
         }
 
 

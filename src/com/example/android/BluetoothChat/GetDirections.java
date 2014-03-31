@@ -36,6 +36,11 @@ import java.util.Locale;
 
 /**
  * Created by Shikhar on 3/27/14.
+ *
+ * This activity does most of the work - It runs an asynctask to do a REST call and parses the JSON from google maps
+ * It also calculates the bearing angle between two sets of LatLng and displays them
+ * This activity needs to be encapsulated within Bluetooth Chat Service in order to broadcast the angle to the wristband
+ *
  */
 public class GetDirections extends Activity {
 

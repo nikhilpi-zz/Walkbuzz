@@ -54,6 +54,12 @@ import java.util.Locale;
 
 /**
  * Created by Shikhar on 3/24/14.
+ * This activity allows the user to add their destination address
+ * It also pulls the current location of the phone (MyLocationListener)
+ * and uses GeoCoder to get an address based on LatLng
+ *
+ * Additional button "Go to Bluetooth" starts up the Bluetooth Chat activity (Demo purposes)
+ *
  */
 public class SourceDestination extends Activity {
     //Debugging
@@ -63,6 +69,9 @@ public class SourceDestination extends Activity {
     private double startLon;
     private EditText destination;
     final static String TAG = "SrcDest";
+
+    //Use geocoder (1), 0 - default location used
+    final private static int GEOC = 1;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,24 +137,25 @@ public class SourceDestination extends Activity {
 
             //Convert Lat/Lon to address
 
-            /*Server seems to be down - Update later
-            Geocoder coder = new Geocoder(getApplicationContext(),Locale.getDefault());
+            if(GEOC == 1) {
+                //Server seems to be down - Update later
+                Geocoder coder = new Geocoder(getApplicationContext(), Locale.getDefault());
 
-            try {
-                List<Address> addresses = coder.getFromLocation(loc.getLatitude(),loc.getLongitude(),1);
+                try {
+                    List<Address> addresses = coder.getFromLocation(loc.getLatitude(), loc.getLongitude(), 1);
 
-                if (addresses != null && addresses.size() > 0) {
+                    if (addresses != null && addresses.size() > 0) {
 
-                    String txt = "Current Location: \n" + addresses.get(0).getAddressLine(0) + "\n" + addresses.get(0).getAddressLine(1) + ", " + addresses.get(0).getAddressLine(2);
-                    locationdata.setText(txt);
+                        String txt = "Current Location: \n" + addresses.get(0).getAddressLine(0) + "\n" + addresses.get(0).getAddressLine(1) + ", " + addresses.get(0).getAddressLine(2);
+                        locationdata.setText(txt);
 
+                    }
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } */
+            }
 
         }
 

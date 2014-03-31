@@ -2,7 +2,14 @@ package com.example.android.BluetoothChat;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +30,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -34,12 +43,16 @@ public class GetDirections extends Activity {
         TextView start;
         TextView duration;
         TextView distance;
+        TextView direction;
+        TextView angle;
 
         String destination;
         String currentLoc;
         String time;
         String dist;
+        String dir = "";
 
+        Location myLocation;
 
         //JSON Connection Info
 
@@ -65,16 +78,31 @@ public class GetDirections extends Activity {
         private static final String TAG_TEXT = "text";
 
 
+        //Cardinal (0) or Angle (1)
+        private static final int ANG = 1;
+        private static final String[] bearings = {"NE", "E", "SE", "S", "SW", "W", "NW", "N"};
+
 
     @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.directions);
 
+            //Location listeners
+        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        LocationListener listen = new MyLocationListener();
+        myLocation = new Location(Context.LOCATION_SERVICE);
+        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listen);
+
+
+
             start = (TextView) findViewById(R.id.currentLocation);
             ending = (TextView) findViewById(R.id.endLoc);
             distance = (TextView) findViewById(R.id.duration);
             duration = (TextView) findViewById(R.id.distance);
+            direction = (TextView) findViewById(R.id.direction);
+            angle = (TextView) findViewById(R.id.angle);
+
 
             Intent intent = this.getIntent();
             destination = intent.getExtras().getString("destination");
@@ -221,7 +249,114 @@ public class GetDirections extends Activity {
                 distance.setText("\n" + "Distance\n" + dist);
                 duration.setText("\n" + "Duration\n" + time);
 
+                int ang = 0;
+                Step current;
+                for(int i = 0; i < stepsList.size(); i++){
+                    //get current step
+                    current = stepsList.get(i);
+
+                    //Calculate angle
+                    if(ANG == 1){
+                        ang = toAngle(current);
+                    }
+                    else{
+                        ang = toCardinal(current);
+                        String dir = bearings[ang];
+                        duration.setText("\n" + "Duration\n" + time);
+                        ang = ang*45;
+                        Log.e(TAG_DIST,dir);
+
+
+
+                    }
+
+                    Log.d(TAG_START,""+ang);
+
+
+                    //Broadcast and Display Angle for this step
+
+                    /* The implementation below results in a massive memory leak and crashes the app
+                    *               -- need to figure out another method
+                    *               -- alternative: take "time" value from JSON for a step and establish a timer that broadcasts for that amt of time
+                    *
+                    *
+                    * while(myLocation.lat != current.end_lat && myLocation.lon != current.end_lon)
+                    *       Display and Broadcast angle
+                    *
+                    *
+                    *
+                    * */
+
+
+
+
+                }
+
             }
         }
+
+    //Uses spherical triangle formula which takes into account the curvature of the Earth
+
+    public int toAngle(Step step){
+
+        double dLon = step.end_lon-step.start_lon;
+        double y = Math.sin(dLon) * Math.cos(step.end_lat);
+        double x = Math.cos(step.start_lat)*Math.sin(step.end_lat) - Math.sin(step.start_lat)*Math.cos(step.end_lat)*Math.cos(dLon);
+        double angle = Math.atan2(y, x);
+        int angDeg = (int) Math.toDegrees(angle);
+        if(angDeg < 0) angDeg += 360;
+        step.angle = angDeg;
+
+        return angDeg;
+    }
+
+    //Gives a cardinal angle based on bearing angle {"NE", "E", "SE", "S", "SW", "W", "NW", "N"}
+    public int toCardinal(Step step){
+        int ang = toAngle(step);
+        double angle = ang - 22.5;
+        if (angle < 0) angle += 360;
+        int index = (int) angle/45;
+
+
+        //this indexes the bearing array
+        return index;
+
+    }
+
+
+
+
+
+
+         /* My Location Listener */
+
+    public class MyLocationListener implements LocationListener
+    {
+        @Override
+        public void onLocationChanged(Location loc)
+        {
+            myLocation = loc;
+        }
+
+        @Override
+        public void onProviderDisabled(String provider)
+        {
+            Toast.makeText(getApplicationContext(), "GPS Disabled", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onProviderEnabled(String provider)
+
+        {
+            Toast.makeText(getApplicationContext(), "GPS Enabled", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras)
+
+        {
+        }
+
+    }/* End of MyLocationListener */
 
 }

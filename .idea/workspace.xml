@@ -29,7 +29,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ffa1616-1936-4f4d-8204-18268bd8600b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/android/BluetoothChat/GetDirections.java" afterPath="$PROJECT_DIR$/src/com/example/android/BluetoothChat/GetDirections.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/android/BluetoothChat/SourceDestination.java" afterPath="$PROJECT_DIR$/src/com/example/android/BluetoothChat/SourceDestination.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/directions.xml" afterPath="$PROJECT_DIR$/res/layout/directions.xml" />
@@ -110,14 +109,14 @@
       <file leaf-file-name="SourceDestination.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/SourceDestination.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1372" max-vertical-offset="2865">
-              <caret line="68" column="0" selection-start="2212" selection-end="2212" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="2940">
+              <caret line="147" column="16" selection-start="4708" selection-end="4708" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2527#2774#0" expanded="true" />
-                <element signature="e#2763#2764#0" expanded="true" />
-                <element signature="e#3262#3749#0" expanded="true" />
-                <element signature="e#3738#3739#0" expanded="true" />
+                <element signature="e#2569#2816#0" expanded="true" />
+                <element signature="e#2805#2806#0" expanded="true" />
+                <element signature="e#3304#3791#0" expanded="true" />
+                <element signature="e#3780#3781#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -126,7 +125,7 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="579" max-vertical-offset="945">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="945">
               <caret line="27" column="0" selection-start="1422" selection-end="1422" />
               <folding>
                 <element signature="e#1629#1668#0" expanded="true" />
@@ -135,11 +134,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="directions.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="directions.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/res/layout/directions.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.222221" vertical-offset="42" max-vertical-offset="735">
-              <caret line="41" column="33" selection-start="1472" selection-end="1472" />
+            <state vertical-scroll-proportion="0.13274336" vertical-offset="0" max-vertical-offset="915">
+              <caret line="3" column="41" selection-start="82" selection-end="82" />
               <folding />
             </state>
           </provider>
@@ -148,13 +147,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GetDirections.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GetDirections.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/GetDirections.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40509915" vertical-offset="3142" max-vertical-offset="3495">
-              <caret line="219" column="0" selection-start="6923" selection-end="6923" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5520">
+              <caret line="280" column="21" selection-start="9208" selection-end="9208" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#10625#10626#0" expanded="true" />
+                <element signature="e#10665#10666#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -281,10 +282,10 @@
         <option value="$PROJECT_DIR$/src/com/example/android/BluetoothChat/HTTPService.java" />
         <option value="$PROJECT_DIR$/src/com/example/android/BluetoothChat/LocationListener.java" />
         <option value="$PROJECT_DIR$/src/com/example/android/BluetoothChat/MyLocationListener.java" />
-        <option value="$PROJECT_DIR$/res/layout/directions.xml" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/example/android/BluetoothChat/SourceDestination.java" />
         <option value="$PROJECT_DIR$/src/com/example/android/BluetoothChat/GetDirections.java" />
+        <option value="$PROJECT_DIR$/res/layout/directions.xml" />
       </list>
     </option>
   </component>
@@ -686,14 +687,14 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.4995905" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4012158" sideWeight="0.4987715" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4012158" sideWeight="0.4987715" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.4995958" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25307125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25348645" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.4995905" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -764,10 +765,10 @@
           <caret line="121" column="51" selection-start="3903" selection-end="3903" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2527#2774#0" expanded="true" />
-            <element signature="e#2763#2764#0" expanded="true" />
-            <element signature="e#3262#3749#0" expanded="true" />
-            <element signature="e#3738#3739#0" expanded="true" />
+            <element signature="e#2569#2816#0" expanded="true" />
+            <element signature="e#2805#2806#0" expanded="true" />
+            <element signature="e#3304#3791#0" expanded="true" />
+            <element signature="e#3780#3781#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -789,6 +790,8 @@
           <caret line="40" column="0" selection-start="1477" selection-end="1477" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#10625#10626#0" expanded="true" />
+            <element signature="e#10665#10666#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -807,10 +810,10 @@
           <caret line="103" column="18" selection-start="3582" selection-end="3582" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2527#2774#0" expanded="true" />
-            <element signature="e#2763#2764#0" expanded="true" />
-            <element signature="e#3262#3749#0" expanded="true" />
-            <element signature="e#3738#3739#0" expanded="true" />
+            <element signature="e#2569#2816#0" expanded="true" />
+            <element signature="e#2805#2806#0" expanded="true" />
+            <element signature="e#3304#3791#0" expanded="true" />
+            <element signature="e#3780#3781#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -832,6 +835,8 @@
           <caret line="77" column="52" selection-start="2499" selection-end="2499" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#10625#10626#0" expanded="true" />
+            <element signature="e#10665#10666#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -850,10 +855,10 @@
           <caret line="87" column="0" selection-start="2737" selection-end="3038" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2527#2774#0" expanded="true" />
-            <element signature="e#2763#2764#0" expanded="true" />
-            <element signature="e#3262#3749#0" expanded="true" />
-            <element signature="e#3738#3739#0" expanded="true" />
+            <element signature="e#2569#2816#0" expanded="true" />
+            <element signature="e#2805#2806#0" expanded="true" />
+            <element signature="e#3304#3791#0" expanded="true" />
+            <element signature="e#3780#3781#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -875,6 +880,8 @@
           <caret line="45" column="41" selection-start="1388" selection-end="1388" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#10625#10626#0" expanded="true" />
+            <element signature="e#10665#10666#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -893,10 +900,10 @@
           <caret line="66" column="0" selection-start="1787" selection-end="1787" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2527#2774#0" expanded="true" />
-            <element signature="e#2763#2764#0" expanded="true" />
-            <element signature="e#3262#3749#0" expanded="true" />
-            <element signature="e#3738#3739#0" expanded="true" />
+            <element signature="e#2569#2816#0" expanded="true" />
+            <element signature="e#2805#2806#0" expanded="true" />
+            <element signature="e#3304#3791#0" expanded="true" />
+            <element signature="e#3780#3781#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1037,16 +1044,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/BluetoothChat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4980">
+          <caret line="326" column="45" selection-start="12039" selection-end="12039" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/SourceDestination.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1372" max-vertical-offset="2865">
-          <caret line="68" column="0" selection-start="2212" selection-end="2212" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="2940">
+          <caret line="147" column="16" selection-start="4708" selection-end="4708" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2527#2774#0" expanded="true" />
-            <element signature="e#2763#2764#0" expanded="true" />
-            <element signature="e#3262#3749#0" expanded="true" />
-            <element signature="e#3738#3739#0" expanded="true" />
+            <element signature="e#2569#2816#0" expanded="true" />
+            <element signature="e#2805#2806#0" expanded="true" />
+            <element signature="e#3304#3791#0" expanded="true" />
+            <element signature="e#3780#3781#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1061,33 +1076,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/GetDirections.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5520">
+          <caret line="280" column="21" selection-start="9208" selection-end="9208" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10625#10626#0" expanded="true" />
+            <element signature="e#10665#10666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/directions.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.222221" vertical-offset="42" max-vertical-offset="735">
-          <caret line="41" column="33" selection-start="1472" selection-end="1472" />
+        <state vertical-scroll-proportion="0.13274336" vertical-offset="0" max-vertical-offset="915">
+          <caret line="3" column="41" selection-start="82" selection-end="82" />
           <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/BluetoothChat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4980">
-          <caret line="326" column="45" selection-start="12039" selection-end="12039" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/android/BluetoothChat/GetDirections.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40509915" vertical-offset="3142" max-vertical-offset="3495">
-          <caret line="219" column="0" selection-start="6923" selection-end="6923" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
   </component>

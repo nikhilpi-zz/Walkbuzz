@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.gesture.Prediction;
 import android.location.Address;
 import android.location.Geocoder;
@@ -111,6 +112,7 @@ public class SourceDestination extends Activity {
 
 
 
+
     }
 
      /* My Location Listener */
@@ -126,7 +128,7 @@ public class SourceDestination extends Activity {
 
             //Convert Lat/Lon to address
 
-            //Server seems to be down - Update later
+            /*Server seems to be down - Update later
             Geocoder coder = new Geocoder(getApplicationContext(),Locale.getDefault());
 
             try {
@@ -138,9 +140,12 @@ public class SourceDestination extends Activity {
                     locationdata.setText(txt);
 
                 }
+
+
+
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            } */
 
         }
 

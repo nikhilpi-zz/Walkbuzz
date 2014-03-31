@@ -1,0 +1,9 @@
+WalkBuzz - a GPS app for the Motorola Breaking Mobile Limits Competition
+
+This Android app communicates with an a haptic wristband to send angular signals through an Arduino interface. 
+
+Built with Android Studio
+Dependencies include: 
+
+	- Google Play Services
+	- Java Http Client Google

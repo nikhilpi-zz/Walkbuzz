@@ -58,7 +58,7 @@ public class GetDirections extends Activity {
         TextView start;
         TextView duration;
         TextView distance;
-        TextView direction;
+        TextView dst;
         TextView angle;
 
         String destination;
@@ -66,6 +66,9 @@ public class GetDirections extends Activity {
         String time;
         String dist;
         String dir = "";
+        Location[] locations = new Location[100];
+        int[] angles;
+        String[] cardinality;
 
         Location myLocation;
 
@@ -139,7 +142,7 @@ public class GetDirections extends Activity {
             //Location listeners
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         LocationListener listen = new MyLocationListener();
-        myLocation = new Location(Context.LOCATION_SERVICE);
+        myLocation = new Location(LocationManager.GPS_PROVIDER);
         manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listen);
 
 
@@ -148,7 +151,7 @@ public class GetDirections extends Activity {
             ending = (TextView) findViewById(R.id.endLoc);
             distance = (TextView) findViewById(R.id.duration);
             duration = (TextView) findViewById(R.id.distance);
-            direction = (TextView) findViewById(R.id.direction);
+            dst = (TextView) findViewById(R.id.direction);
             angle = (TextView) findViewById(R.id.angle);
 
 
@@ -163,14 +166,13 @@ public class GetDirections extends Activity {
 
             start.setText("\n" + "Start Location\n" + currentLoc);
             ending.setText("\n" + "End Location\n" + destination);
-
+            Log.d(TAG_DIST, myLocation.toString());
             stepsList = new ArrayList<Step>();
             client = new DefaultHttpClient();
 
-            new Read().execute();
+
 
             //Bluetooth Init
-
 
             // Set up the custom title
             mTitle = (TextView) findViewById(R.id.title_left_text);
@@ -240,7 +242,7 @@ public class GetDirections extends Activity {
         if (mBluetoothAdapter.getScanMode() !=
                 BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
             Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 2400);
             startActivity(discoverableIntent);
         }
     }
@@ -331,18 +333,24 @@ public class GetDirections extends Activity {
         return false;
     }
 
+
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case REQUEST_CONNECT_DEVICE:
                 // When DeviceListActivity returns with a device to connect
                 if (resultCode == Activity.RESULT_OK) {
                     // Get the device MAC address
-                    String address = data.getExtras()
-                            .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+                    String address = data.getExtras().getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
                     // Get the BLuetoothDevice object
                     BluetoothDevice device = mBluetoothAdapter.getRemoteDevice(address);
                     // Attempt to connect to the device
                     mChatService.connect(device);
+                    while(mChatService.getState() == BluetoothChatService.STATE_CONNECTING) {
+                    }
+                    if (mChatService.getState() == BluetoothChatService.STATE_CONNECTED) {
+                        new Read().execute();
+                    }
                 }
                 break;
             case REQUEST_ENABLE_BT:
@@ -389,9 +397,6 @@ public class GetDirections extends Activity {
 
 
 
-
-
-
                 //return the Steps array to background thread
                 JSONArray arr = obj2.getJSONArray("steps");
                 return arr;
@@ -411,16 +416,19 @@ public class GetDirections extends Activity {
             double end_lat;
             double end_lon;
             int angle;
+            int distance;
             String comp_direction;
 
 
-            public Step(double slat, double slon, double elat, double elon){
+            public Step(double slat, double slon, double elat, double elon, int dist){
                 start_lat = slat;
                 start_lon = slon;
                 end_lat = elat;
                 end_lon = elon;
                 angle = 0;
                 comp_direction = "";
+                distance = dist;
+
             }
 
 
@@ -456,8 +464,11 @@ public class GetDirections extends Activity {
                         double endLat = endLocation.getDouble(TAG_END_LAT);
                         double endLon = endLocation.getDouble(TAG_START_LNG);
 
+                        JSONObject d = step.getJSONObject("distance");
+                        int dst = d.getInt("value");
+
                         //create Step
-                        Step s = new Step(startLat, startLon, endLat, endLon);
+                        Step s = new Step(startLat, startLon, endLat, endLon, dst);
 
                         //add to global list of steps
 
@@ -483,14 +494,25 @@ public class GetDirections extends Activity {
                 duration.setText("\n" + "Duration\n" + time);
 
                 int ang = 0;
+                angles = new int[stepsList.size()];
+                cardinality = new String[stepsList.size()];
+
+
                 Step current;
                 for(int i = 0; i < stepsList.size(); i++){
                     //get current step
                     current = stepsList.get(i);
-
+                    Location l = new Location(" ");
+                    l.setLatitude(current.end_lat);
+                    l.setLongitude(current.end_lon);
+                    if(stepsList.size() > 100){
+                        locations = new Location[stepsList.size()];
+                    }
+                    locations[i] = l;
                     //Calculate angle
                     if(ANG == 1){
                         ang = toAngle(current);
+                        angles[i] = ang;
                     }
                     else{
                         ang = toCardinal(current);
@@ -498,32 +520,20 @@ public class GetDirections extends Activity {
                         duration.setText("\n" + "Duration\n" + time);
                         ang = ang*45;
                         Log.e(TAG_DIST,dir);
+                        angles[i] = ang;
 
 
 
                     }
 
                     Log.d(TAG_START,""+ang);
-
-
-                    //Broadcast and Display Angle for this step
-
-                    /* The implementation below results in a massive memory leak and crashes the app
-                    *               -- need to figure out another method
-                    *               -- alternative: take "time" value from JSON for a step and establish a timer that broadcasts for that amt of time
-                    *
-                    *
-                    * while(myLocation.lat != current.end_lat && myLocation.lon != current.end_lon)
-                    *       Display and Broadcast angle
-                    *
-                    *
-                    *
-                    * */
-
-
+                    Log.d(TAG_DIST, stepsList.get(i).distance + "");
 
 
                 }
+                new Broadcast().execute();
+
+
 
             }
         }
@@ -536,8 +546,9 @@ public class GetDirections extends Activity {
         double y = Math.sin(dLon) * Math.cos(step.end_lat);
         double x = Math.cos(step.start_lat)*Math.sin(step.end_lat) - Math.sin(step.start_lat)*Math.cos(step.end_lat)*Math.cos(dLon);
         double angle = Math.atan2(y, x);
-        int angDeg = (int) Math.toDegrees(angle);
-        if(angDeg < 0) angDeg += 360;
+        int angDeg = (int) Math.toDegrees(angle) + 90;
+        if(angDeg > 360) angDeg -= 360;
+        else if(angDeg < 0) angDeg += 360;
         step.angle = angDeg;
 
         return angDeg;
@@ -561,6 +572,166 @@ public class GetDirections extends Activity {
 
 
 
+    private double distanceBetween(double lat1, double lon1, double lat2, double lon2, char unit) {
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+        if (unit == 'K') {
+            dist = dist * 1.609344;
+        } else if (unit == 'N') {
+            dist = dist * 0.8684;
+        }
+        return (dist);
+    }
+
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    /*::  This function converts decimal degrees to radians             :*/
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    private double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    /*::  This function converts radians to decimal degrees             :*/
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    private double rad2deg(double rad) {
+        return (rad * 180.0 / Math.PI);
+    }
+
+    private class Broadcast extends AsyncTask<Void, Void, Void>{
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            for(int i = 0; i < stepsList.size(); i++){
+                final int index = i;
+                int d = stepsList.get(0).distance;
+                int ang = 90;
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        angle.setText("Angle: " + 90 + " ");
+                        sendMessage(90 + "");
+                    }
+                });
+
+                //go straight
+                char unit = 'K';
+
+
+                while(distanceBetween(myLocation.getLatitude(), stepsList.get(i).end_lat, myLocation.getLongitude(), stepsList.get(i).end_lon, unit) > d*.9) {
+                     //do nothing
+
+                }
+                while (distanceBetween(myLocation.getLatitude(), stepsList.get(i).end_lat, myLocation.getLongitude(), stepsList.get(i).end_lon, unit) <=  d*.1) {
+                    //start buzzing when near turn
+                    //check if you are at last step
+
+                    if(i != stepsList.size() - 1){
+                        if(angles[i+1] > angles[i] && angles[i+1] <= 180){
+                            //add i+1 - i to 90 (turn left)
+
+                            int diff = angles[i+1] - angles[i];
+                            int inc = diff/4; //increment/decrement the angle during the turn
+                            ang += inc;
+                            final int a = ang;
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    angle.setText("Angle: " + a);
+                                    sendMessage(a + "");
+
+
+                                }
+                            });
+
+                        }
+                        else if(angles[i+1] < angles[i]){
+                           //subtract i - [i+1] from 90 (turn right)
+                            int diff = angles[i] - angles[i+1];
+                            int inc = diff/4; //increment/decrement the angle during the turn
+                            ang -= inc;
+                            final int a = ang;
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    angle.setText("Angle: " + a);
+                                    sendMessage(a + "");
+
+
+                                }
+                            });
+
+                        }
+                        //go back and turn right
+                        else if(angles[i+1] > 180 && angles[i+1] < 270){
+                            int diff = angles[i+1] - angles[i];
+                            int inc = diff/8; //increment/decrement the angle during the turn
+                            ang += inc; //turn left, and go back
+                            final int a = ang;
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    angle.setText("Angle: " + a + " " + myLocation.toString());
+                                    sendMessage(a + "");
+
+
+                                }
+                            });
+
+                        }
+                        //4th quadrant go back and turn left
+                        else if(angles[i+1] >= 270){
+                            int diff = angles[i+1] - angles[i];
+                            int inc = diff/8;
+                            ang += inc;
+                            final int a = ang;
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    angle.setText("Angle: " + a);
+                                    sendMessage(a + "");
+
+
+                                }
+                            });
+                        }
+                    }
+                    else{
+                        final int a = ang;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                sendMessage(90 + "");
+
+
+                            }
+                        });
+                    }
+
+                }
+
+            }
+
+
+
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+
+    }
+
+
+
          /* My Location Listener */
 
     public class MyLocationListener implements LocationListener
@@ -569,6 +740,7 @@ public class GetDirections extends Activity {
         public void onLocationChanged(Location loc)
         {
             myLocation = loc;
+
         }
 
         @Override

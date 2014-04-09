@@ -71,7 +71,7 @@ public class SourceDestination extends Activity {
     final static String TAG = "SrcDest";
 
     //Use geocoder (1), 0 - default location used
-    final private static int GEOC = 1;
+    final private static int GEOC = 0;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +80,7 @@ public class SourceDestination extends Activity {
         locationdata = (TextView) findViewById(R.id.location);
         destination = (EditText) findViewById(R.id.dest);
 
-        locationdata.setText("711 Church St, Evanston, IL 60201");
+        locationdata.setText("1715 Chicago Ave, Evanston, IL 60201");
 
         //Start Bluetooth Chat
 
@@ -100,7 +100,6 @@ public class SourceDestination extends Activity {
 
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         LocationListener listen = new MyLocationListener();
-
         manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listen);
 
         //End Current Location Listener
@@ -118,9 +117,6 @@ public class SourceDestination extends Activity {
                 startActivity(i);
             }
         });
-
-
-
 
     }
 
@@ -156,6 +152,8 @@ public class SourceDestination extends Activity {
                     e.printStackTrace();
                 }
             }
+
+
 
         }
 
